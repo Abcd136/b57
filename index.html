@@ -3,612 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>软件下载界面</title>
-        <style>
+    <title>专业司机培训学校</title>
+    <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #f7f7f7;
+            display: flex;
         }
-        .container {
-            max-width: 1200px;
-            margin: auto;
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            height: 100vh;
+            color: white;
+            padding: 20px;
+            transition: width 0.3s;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+        .sidebar a:hover {
+            background-color: #555;
+        }
+        .sidebar .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .sidebar .submenu a {
+            padding: 5px;
+        }
+        .main-content {
+            flex-grow: 1;
             padding: 20px;
         }
-        .software-item {
-            background: #fff;
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+        .card {
+            background-color: #fff;
             border: 1px solid #ddd;
-            margin-bottom: 20px;
+            border-radius: 10px;
             padding: 20px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
-        .software-image {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 20px;
+        .card:hover {
+            transform: translateY(-5px);
         }
-        .software-title {
-            font-size: 24px;
+        .card-category {
+            text-transform: uppercase;
+            color: #666;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .card-content {
+            font-size: 1em;
             color: #333;
-            margin-bottom: 10px;
         }
-        .software-description {
-            margin-bottom: 20px;
-        }
-        .software-rating {
-            color: gold;
-            margin-bottom: 10px;
-        }
-        .download-button {
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: row; /* 保持侧边栏在左侧 */
+            }
+            .sidebar {
+                width: 90px; /* 保持固定宽度 */
+                height: auto;
+            }
+            .main-content {
+                flex-grow: 1;
+                padding: 20px;
+            }
+            .card-container {
+                grid-template-columns: 1fr; /* 卡片堆叠 */
+            }
+            .download-btn {
             display: inline-block;
+            padding: 5px 10px;
             background-color: #5cb85c;
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            
         }
-        .download-button:hover {
+        .download-btn:hover {
             background-color: #4cae4c;
         }
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .software-item {
-                padding: 10px;
-            }
-            .software-title {
-                font-size: 20px;
-            }
-            .download-button {
-                padding: 8px 16px;
-            }
-        }
+    }
     </style>
-    
-    <style>
-        /* 模态窗口的样式 */
-        .modal {
-            display: none; /* 默认不显示 */
-            position: fixed; /* 固定定位 */
-            z-index: 1; /* 确保模态窗口在最上层 */
-            left: 0;
-            top: 0;
-            width: 100%; /* 宽度100% */
-            height: 100%; /* 高度100% */
-            overflow: auto; /* 允许滚动 */
-            background-color: rgba(0,0,0,0.4); /* 黑色背景，透明度0.4 */
-        }
-
-        /* 模态内容的样式 */
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15%从顶部和自动居中 */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* 内容宽度为80% */
-        }
-
-        /* 关闭按钮的样式 */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-    
-
 </head>
 <body>
-    <div class="container">
-        <!-- 软件下载卡片 -->
-        <div class="software-item">
-            <h2 class="software-title">禁漫2</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/XwALKDT8/" class="download-button">下载</a> 
-            <a href="https://jm365.work/kc7QzC" class="download-button">手动更新</a>
-
+    <div class="sidebar">
+                <h2></h2>
+        <a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu0')">首页</a>
+        <div id="submenu0" class="submenu">
+            <a href="https://abcd136.github.io/b/">跳转</a>
+            </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu1')">通知</a>
+        <div id="submenu1" class="submenu">
+            <a href="https://abcd136.github.io/b1/">公告</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu2')">广播</a>
+        <div id="submenu2" class="submenu">
+            <a href="https://abcd136.github.io/b41/">广播站</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu3')">安卓</a>
+        <div id="submenu3" class="submenu">
+            <a href="#">软件</a>
+            <a href="#">梯子</a>
+            <a href="#">影视</a>
+            <a href="#">小说</a>
+            <a href="#">AI</a>
+            <a href="#">搜图</a>
+            <a href="#">私密</a>
+            <a href="#">网盘</a>
+            <a href="#">手游</a>
+            <a href="#">动漫</a>
+            <a href="#">工具</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu4')">电脑</a>
+        <div id="submenu4" class="submenu">
+            <a href="#">软件</a>
+            <a href="#">梯子</a>
+            <a href="#">游戏网站</a>
+            <a href="#">游戏加速</a>
+            <a href="#">游戏</a>
+            <a href="#">系统</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu5')">吃瓜</a>
+        <div id="submenu5" class="submenu">
+            <a href="#">网络</a>
+        </div>
+        <p><a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu6')">车牌</a>
+        <div id="submenu6" class="submenu">
+            <a href="#">网络</a>
+            <a href="#">车号</a>
+            <a href="#">里番</a>
+        </div>
+        <a href="#" class="menu-toggle" onclick="toggleMenu(event, 'submenu7')">旧网站</a>
+        <div id="submenu7" class="submenu">
+            <a href="https://abcd136.github.io/abcd/">跳转</a>
+        </div>
     </div>
+    <div class="main-content">
+        <div class="header">
+            <h1></h1>
+        </div>
 
-<!-- 触发弹出窗口的按钮 -->
-<h3><p id="openModalBtn">禁漫←点击查看</p></h3>
-
-<!-- 模态窗口 -->
-<div id="myModal" class="modal">
-    <!-- 模态内容 -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>
-            jmcomic2是一款专为漫画爱好者打造的阅读神器，提供了海量的漫画资源，涵盖了各种题材和风格，满足了不同用户的阅读需求。
-
-<p>禁漫天堂发布页
-<p>回家的路，怕走失记得收藏哦
-<p>国际通用网域 不支援日本/韩国路线
-<p>18comic.vip
-<p>18comic.org
-<p>东南亚路线建议使用
-<p>jmcomic.me 
-<p>jmcomic1.me
-
-<p>=内地网域=请使用Chrome浏览器开启
-<p>18-comicblade.art
-
-<p>分流1
-<p>18-comicstellar.club
-
-<p>分流2
-<p>18-comicstellar.me
-
-<p>APP软件下载
-<p>jm365.work/ZNPJam
-
-<p>如果地址无法打开，欢迎发送邮件告知
-<p>re18comic＠gmail.com
-</p>
-    </div>
+        <div class="card-container">
+            <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">禁漫2</div>
+        <div class="card-content">
+        <div class="download-section">
+            官方版本1.7.2
+        <p><a href="https://share.feijipan.com/s/XwALKDT8/" class="download-btn">下载</a>
+        <a href="https://jm365.work/kc7QzC" class="download-btn">更新</a>
 </div>
-
-        
-        <div class="software-item">
-            <h2 class="software-title">91解锁版</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/XGAghl4t/" class="download-button">立即下载</a> 无需登陆
-            
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">东京热</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/VLAgiP6W/" class="download-button">立即下载</a> 
-            
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">撸了么</h2>
-            <p class="software-description">解锁免费视频，VIP视频没解锁</p>
-
-            <a href="https://share.feijipan.com/s/J5Agi3Zd" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">P站</h2>
-            <p class="software-description">解锁免费视频，VIP视频没解锁</p>
-
-            <a href="https://share.feijipan.com/s/QBAgk3f3" class="download-button">立即下载</a>
-            
-        </div>
-            
-            <div class="software-item">
-            <h2 class="software-title">热情的妹妹之浴室乱伦txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iNsdh21wnamb" class="download-button">立即下载</a> 
-        </div>
-            
-        <div class="software-item">
-            <h2 class="software-title">快猫</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/QiAizv2G" class="download-button">立即下载</a>
-            
-        </div>
-        
-            <div class="software-item">
-            <h2 class="software-title">91猎奇</h2>
-            <p class="software-description">只看视频，其他的一概不要理会</p>
-
-            <a href="https://share.feijipan.com/s/OGAiiOnE" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">50度灰</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/qWAiiyLc" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">91快播</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/0WAiiIkq" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">一个</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/OPAikNs1" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">嘿嘿连载</h2>
-            <p class="software-description">一键注册登录就行了</p>
-
-            <a href="https://share.feijipan.com/s/FFAikcnn" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">漫漫撸2</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/q5Aio0rB/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">地铁妹妹.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/ivPi121wpl4b" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">当我一天的男朋友好吗.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iBalr21x6bsh/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">合欢</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/6nAjXXCa/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">REDTUBE</h2>
-            <p class="software-description">看免费的就行了，其它的不要点</p>
-
-            <a href="https://share.feijipan.com/s/ICAjYEXj/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">快色</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/T6Aj3HxA/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">麻豆</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/sHAjc9ZA/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">AV百科</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/a6AjgT8p" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">P站</h2>
-            <p class="software-description">无需更新软件</p>
-
-            <a href="https://share.feijipan.com/s/6rAjr2Qq" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">R星</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/34Ajrjrw" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">X站</h2>
-            <p class="software-description">无需更新软件</p>
-
-            <a href="https://share.feijipan.com/s/IlAjSaks" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">哗咔</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/nUAkvEfh" class="download-button">立即下载</a>
-
-            <a href="https://manhuabika.com/" class="download-button">官网</a>
-            
-            <a href="http://pica3.com" class="download-button">下载不翻</a>
-                        
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">淘涩</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/d5Akw5HK/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">西瓜</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/JkAkkQzG/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">小黄人</h2>
-            <p class="software-description">充值才能使用，请卸载</p>
-
-            <a href="https://share.feijipan.com/s/roAlBYJm/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">性巴克</h2>
-            <p class="software-description">无需登录，标记着免费可以看</p>
-
-            <a href="https://share.feijipan.com/s/v2AlC0Cu/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">性用社</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/xqAlCSYW/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">樱桃</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/LQAlGiDY/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">影视坊</h2>
-            <p class="software-description">充值才能使用，请卸载</p>
-
-            <a href="https://share.feijipan.com/s/L2AlGqGT" class="download-button">官网</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">X站</h2>
-            <p class="software-description">标记着免费可以看</p>
-
-            <a href="https://share.feijipan.com/s/GIAl2g6i" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">吃瓜网</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/tSAlp1Kd/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">黄瓜</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/7rAlpaz8/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">快播</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/6ZAlpeQ7" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">撸了么</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/zUAlpfs0/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">撸撸社</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/5qAlptDM/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">成人百科</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/XNAlqTL9" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">91看片</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/nmAlpPLE" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">妹妹的来访.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iYgi221xd9va/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">被女友姊姊吃了我的处男身.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iUkAY21xeouf/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">鸡你太美</h2>
-            <p class="software-description">充值才能使用请你立即卸载</p>
-
-            <a href="https://share.feijipan.com/s/XQAoIhhU/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">反差百科</h2>
-            <p class="software-description">充值才能使用请你立即卸载</p>
-
-            <a href="https://share.feijipan.com/s/uYAoIrDj" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">武悦甜</h2>
-            <p class="software-description">充值才能使用请你立即卸载</p>
-
-            <a href="https://share.feijipan.com/s/fWAoJ7KY/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">R星</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/7dApUjoS/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">羞羞</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/d1Aq1gvx" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">丁丁锻炼手册</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/kQAqkMTt" class="download-button">立即下载</a> 密码：leftwalker
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">女友的姊妹们.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iw4nH21xgc5a" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">色鬼上身草女友.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iJIEB21xgmwh" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">漂亮女大学生喂奶.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iPIvu21xgzad" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">女校里的男生.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iFN5y21xh8wj" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">强暴车祸少女.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iZEaq21xi3gj" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">公交漂亮妹妹.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/i5iiU21xij4d/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">淫荡妹妹不穿内裤.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iHbvk21xirzc" class="download-button">立即下载</a> 女生视角
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">我上了我家楼上的国三女生.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/i0yoN21xjd2b/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">我的妹妹是最棒的配菜.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iLCJR206ybji" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">飘飘欲仙.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/iKsLT206yh7c/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">大量小说</h2>
-            <p class="software-description"></p>
-
-            <a href="https://share.feijipan.com/s/W8Apb0rj/" class="download-button">立即下载</a>1
-            
-            <a href="https://share.feijipan.com/s/G8ApbMCo/" class="download-button">立即下载</a>2
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">爱裸睡的丹丹.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/isqTW21xkl3g/" class="download-button">立即下载</a>
-        </div>
-        
-        <div class="software-item">
-            <h2 class="software-title">爱裸睡的丹丹.txt</h2>
-            <p class="software-description"></p>
-
-            <a href="https://wwm.lanzn.com/il2vg21xl6ji" class="download-button">立即下载</a>
-        </div>
-        
-        <!-- 更多软件卡片可以按照上面的格式添加 -->
+            </div>
     </div>
-    
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">哗咔</div>
+        <div class="card-content">
+        <div class="download-section">
+            官网需要梯子...
+        <p><a href="https://share.feijipan.com/s/nUAkvEfh" class="download-btn">下载</a>
+        <a href="https://manhuabika.com/" class="download-btn">官网</a>
+        
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">快猫</div>
+        <div class="card-content">
+        <div class="download-section">
+            随便注册账号
+        <p><a href="https://share.feijipan.com/s/QiAizv2G" class="download-btn">下载</a>
+</div>
+            </div>
+    </div>
+        <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">51吃瓜</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/WCCBEweg" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">51禁域</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/XaCBEx8b" class="download-btn">下载</a>
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">尾巴视频</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/LdCBEyBT" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">武悦甜</div>
+        <div class="card-content">
+        <div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/KzCBEzf1" class="download-btn">下载</a>
+        
+</div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-category"></div>
+        <div class="card-title">红塔</div>
+        <div class="card-content">
+<div class="download-section">
+            
+        <p><a href="https://share.feijipan.com/s/OfCBEgJB" class="download-btn">下载</a>
+</div>
+            </div>
+    </div>
     <script>
-    // 获取触发按钮和模态窗口的元素
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("openModalBtn");
-    var span = document.getElementsByClassName("close")[0];
-
-    // 点击按钮打开模态窗口
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // 点击关闭按钮关闭模态窗口
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // 在用户点击模态窗口外部时关闭它
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        function toggleMenu(event, submenuId) {
+            event.preventDefault(); // 阻止链接的默认行为
+            var submenu = document.getElementById(submenuId);
+            if (submenu.style.display === 'block') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'block';
+            }
         }
-    }
-</script>
-
+        // ... JavaScript代码保持不变 ...
+    </script>
 </body>
 </html>
